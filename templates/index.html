@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>To Do App</title>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  </head>
+  <body>
+    <h1>TO DO LIST:</h1>
+    <table>
+      <tr>
+        <th>Task</th>
+        <th>Email Address:</th>
+        <th>Priority Level</th>
+      </tr>
+      {% for list in to_do_list %}
+      <tr>
+        {% for value in list %}
+          <td>{{value}}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </table>
+
+<div id="to_do_form">
+  <form action="/submit" method="post">
+    <label>Enter Task:</label>
+    <textarea name="task" cols="50" rows="4"></textarea>
+    <br>
+    <br>
+    <label>Assignee Email Address:</label>
+    <input type="text" name="email" placeholder="Enter Email Address"></input>
+    <br>
+    <br>
+    <label>Priority of Task:</label>
+    <select name="priority">
+      <option selected="selected" value="default">Select Priority</option>
+      <option value="low">Low</option>
+      <option value="medium">Medium</option>
+      <option value="high">High</option>
+    </select>
+    <br>
+    <br>
+    <input id="submit" type="submit" value="Submit Task"></input>
+  </form>
+</div>
+
+  </body>
+</html>
