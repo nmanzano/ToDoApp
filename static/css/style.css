@@ -2,6 +2,13 @@ body {
   background-color: lightblue;
 }
 
+h1{
+  text-align: center;
+}
+
+h2 {
+  color: red;
+}
 
 table {
     font-family: arial, sans-serif;
@@ -10,8 +17,8 @@ table {
 }
 
 td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
+    border: 1px solid black;
+    text-align: center;
     padding: 8px;
 }
 
@@ -19,8 +26,12 @@ tr:nth-child(even) {
     background-color: #dddddd;
 }
 
+tr:nth-child(odd) {
+    background-color: #C0C0C0;
+}
+
 #clear {
-  margin: auto;
+  text-align: center;
 }
 
 #submit{

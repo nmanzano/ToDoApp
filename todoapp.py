@@ -24,7 +24,7 @@ def submit():
             error['priority'] = 'show'
         if '@' not in request.form['email']:
             error['email'] = 'show'
-        else:
+        if error['priority'] == 'none' and error['email'] == 'none':
             individual_task.append(request.form['task'])
             individual_task.append(request.form['email'])
             individual_task.append(request.form['priority'])
