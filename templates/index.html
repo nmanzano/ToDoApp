@@ -7,44 +7,62 @@
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
   </head>
   <body>
-    <h1>TO DO LIST:</h1>
+
+  <h2 style="display:{{error['priority']}}">ERROR: Please Select Priority of Task</h2>
+  <h2 style="display:{{error['email']}}">ERROR: Please Enter Valid Email, example@example.com</h2>
+
+  <h1>TO DO LIST:</h1>
+
     <table>
       <tr>
         <th>Task</th>
         <th>Email Address:</th>
         <th>Priority Level</th>
+        <th>Delete</th>
       </tr>
       {% for list in to_do_list %}
       <tr>
-        {% for value in list %}
+        {% for value in list[:3] %}
           <td>{{value}}</td>
         {% endfor %}
+        <td>
+          <form action="/clear_single" method="post">
+            <input name="list_item" type="hidden" value="{{list}}"></input>
+            <input type="submit" value="Delete Single Task"></input>
+          </form>
+        </td>
       </tr>
       {% endfor %}
     </table>
+    <br>
+    <form action="/clear" method="post">
+      <input id="clear" type="submit" value="Clear All Tasks"></input>
+    </form>
 
-<div id="to_do_form">
-  <form action="/submit" method="post">
-    <label>Enter Task:</label>
-    <textarea name="task" cols="50" rows="4"></textarea>
-    <br>
-    <br>
-    <label>Assignee Email Address:</label>
-    <input type="text" name="email" placeholder="Enter Email Address"></input>
-    <br>
-    <br>
-    <label>Priority of Task:</label>
-    <select name="priority">
-      <option selected="selected" value="default">Select Priority</option>
-      <option value="low">Low</option>
-      <option value="medium">Medium</option>
-      <option value="high">High</option>
-    </select>
-    <br>
-    <br>
-    <input id="submit" type="submit" value="Submit Task"></input>
-  </form>
-</div>
+
+  <div id="to_do_form">
+    <form action="/submit" method="post">
+      <label>Write Task:</label>
+      <textarea name="task" cols="50" rows="4" required></textarea>
+      <br>
+      <br>
+      <label>Email Address:</label>
+      <input type="text" name="email" placeholder="Enter Email Address" required></input>
+      <br>
+      <br>
+      <label>Priority of Task:</label>
+      <select name="priority">
+        <option selected="selected" value="select priority">Select Priority</option>
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+      <br>
+      <br>
+      <input id="submit" type="submit" value="Add To Do Item"></input>
+    </form>
+  </div>
+
 
   </body>
 </html>

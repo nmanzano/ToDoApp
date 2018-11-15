@@ -19,6 +19,10 @@ tr:nth-child(even) {
     background-color: #dddddd;
 }
 
+#clear {
+  margin: auto;
+}
+
 #submit{
   float: right;
 }
